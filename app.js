@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const yargs = require('yargs');
-const { getNotes, addNote } = require('./notes');
+const { getNotes, addNote, removeNote } = require('./notes');
 const log = console.log;
 
 // Customize version
@@ -13,26 +13,38 @@ yargs.command({
     builder: {
       title: {
           alias: 't',
-          describe: 'Note title',
+          describe: 'note title',
           demandOption: true,
           type: 'string'
       },
       body: {
           alias: 'b',
-          describe: 'Content of note',
+          describe: 'content of note',
           demandOption: true,
           type: 'string'
       }  
     },
     handler: ({ title, body }) => {
         addNote(title, body);
-        log(chalk.green.bold(`Title: ${title} \nBody: ${body}`));
     }
 });
 
-yargs.command('remove', 'Remove an existing note.', (argv) => {
-    log(chalk.red.bold('Removing a note!'));
-})
+yargs.command('remove',
+    'Remove an existing note.',
+    {
+        id: {
+            describe: 'note id',
+            type: 'number'
+        },
+        title: {
+            alias: 't',
+            describe: 'note title',
+            type: 'string'
+        }
+    },
+    ({ id, title }) => {
+        removeNote(id, title);
+    })
 
 yargs.command('list', 'List existing notes.', (argv) => {
     log(chalk.bold('List of all notes.'));
