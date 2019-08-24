@@ -1,15 +1,11 @@
-const chalk = require('chalk');
 const yargs = require('yargs');
 const { addNote, removeNote, listNotes, readNote } = require('./notes');
-const log = console.log;
 
-// Customize version
-yargs.version('1.0.0');
+yargs.version('1.0.1');
 
-//Commands
 yargs.command({
     command: 'add',
-    describe: 'Add a new note.',
+    describe: 'add a new note.',
     builder: {
       title: {
           alias: 't',
@@ -31,7 +27,7 @@ yargs.command({
 
 yargs.command(
     'remove',
-    'Remove an existing note.',
+    'remove an existing note.',
     {
         id: {
             describe: 'note id',
@@ -50,7 +46,7 @@ yargs.command(
 
 yargs.command(
     'list',
-    'List existing notes.',
+    'list existing notes.',
     () => {
         listNotes();
     }
@@ -75,5 +71,4 @@ yargs.command(
     }
 );
 
-// Parsing args
 yargs.parse();
