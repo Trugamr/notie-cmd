@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const yargs = require('yargs');
-const { getNotes, addNote, removeNote } = require('./notes');
+const { addNote, removeNote, listNotes, readNote } = require('./notes');
 const log = console.log;
 
 // Customize version
@@ -29,7 +29,8 @@ yargs.command({
     }
 });
 
-yargs.command('remove',
+yargs.command(
+    'remove',
     'Remove an existing note.',
     {
         id: {
@@ -44,15 +45,35 @@ yargs.command('remove',
     },
     ({ id, title }) => {
         removeNote(id, title);
-    })
+    }
+);
 
-yargs.command('list', 'List existing notes.', (argv) => {
-    log(chalk.bold('List of all notes.'));
-})
+yargs.command(
+    'list',
+    'List existing notes.',
+    () => {
+        listNotes();
+    }
+);
 
-yargs.command('read', 'Read an existing note.', (argv) => {
-    log(chalk.bold('Reading note.'));
-})
+yargs.command(
+    'read',
+    'read an existing note.',
+    {
+        id: {
+            describe: 'id of note',
+            type: 'number'
+        },
+        title: {
+            alias: 't',
+            describe: 'title of note',
+            type: 'string'
+        }
+    },
+    ({ id, title }) => {
+        readNote(id, title);
+    }
+);
 
 // Parsing args
-yargs.parse()
+yargs.parse();
