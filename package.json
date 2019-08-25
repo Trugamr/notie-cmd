@@ -1,6 +1,6 @@
 {
   "name": "notie-cmd",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "description": "Cute little notes app for command line.",
   "main": "./lib/notes.js",
   "scripts": {
