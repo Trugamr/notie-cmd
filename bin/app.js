@@ -1,7 +1,9 @@
-const yargs = require('yargs');
-const { addNote, removeNote, listNotes, readNote } = require('./notes');
+#!/usr/bin/env node
 
-yargs.version('1.0.1');
+const yargs = require('yargs');
+const { addNote, removeNote, listNotes, readNote } = require('../lib/notes');
+
+yargs.version('1.0.2');
 
 yargs.command({
     command: 'add',
@@ -71,4 +73,6 @@ yargs.command(
     }
 );
 
-yargs.parse();
+yargs
+    .scriptName("notie")
+    .parse();

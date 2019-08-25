@@ -1,16 +1,19 @@
 {
-  "name": "notie",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "name": "notie-cmd",
+  "version": "1.0.3",
+  "description": "Cute little notes app for command line.",
+  "main": "./lib/notes.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "trugamr",
   "license": "ISC",
+  "bin": {
+    "notie": "./bin/app.js"
+  },
+  "preferGlobal": true,
   "dependencies": {
     "chalk": "^2.4.2",
-    "validator": "^11.1.0",
     "yargs": "^14.0.0"
   }
 }
